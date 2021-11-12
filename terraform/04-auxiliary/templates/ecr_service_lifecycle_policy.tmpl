@@ -1,0 +1,30 @@
+{
+    "rules": [
+        {
+            "rulePriority": 1,
+            "description": "Expire images older than ${untagged_age} days",
+            "selection": {
+                "tagStatus": "untagged",
+                "countType": "sinceImagePushed",
+                "countUnit": "days",
+                "countNumber": ${untagged_age}
+            },
+            "action": {
+                "type": "expire"
+            }
+        },
+        {
+            "rulePriority": 2,
+            "description": "Keep last ${max_version_count} images",
+            "selection": {
+                "tagStatus": "tagged",
+                "tagPrefixList": ["v"],
+                "countType": "imageCountMoreThan",
+                "countNumber": ${max_version_count}
+            },
+            "action": {
+                "type": "expire"
+            }
+        }
+    ]
+}
