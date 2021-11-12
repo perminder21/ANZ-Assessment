@@ -1,0 +1,34 @@
+name: 'Docker Build & Push'
+description: 'Builds a Docker image and pushes to a private registry'
+author: 'Sean Smith'
+inputs:
+  image:
+    description: 'Name of the Docker image'
+    required: true
+  tag:
+    description: 'Tag override for Docker image'
+    required: false
+  registry:
+    description: 'Target Docker registry'
+    required: true
+  dockerfile:
+    description: 'Location of Dockerfile, if not Dockerfile in root directory'
+    required: false
+  buildArgs:
+    description: 'Docker build arguments in format KEY=VALUE,KEY=VALUE'
+    required: false
+  username:
+    description: 'Docker registry username'
+    required: false
+  password:
+    description: 'Docker registry password'
+    required: false
+outputs:
+  imageFullName:
+    description: 'Full name of the Docker image'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'anchor'
+  color: 'blue'
