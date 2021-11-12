@@ -1,0 +1,16 @@
+# build stage
+FROM golang:alpine AS build-env
+ENV GO111MODULE=on
+RUN apk update --no-cache add build-base git bzr mercurial gcc ca-certificates
+ADD ./ /src
+RUN go get github.com/gorilla/mux
+RUN go get rsc.io/quote/v3
+COPY main.go /src
+RUN cd /src && go build -o golang-test
+
+# final stage
+FROM alpine
+WORKDIR /app
+COPY --from=build-env /src/golang-test /app/
+ENTRYPOINT ./golang-test
+EXPOSE 8000
