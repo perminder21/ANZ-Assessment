@@ -1,0 +1,27 @@
+# This is a YAML-formatted file.
+# Declare name/value pairs to be passed into your templates.
+
+replicaCount: 2
+restartPolicy: Never
+
+image:
+  repository: 579511882208.dkr.ecr.ap-southeast-2.amazonaws.com/anz-assessment/web-app
+  tag: local
+  pullPolicy: IfNotPresent
+
+service:
+  annotations: {}
+  clusterIP: ""
+  externalIPs: []
+  loadBalancerIP: ""
+  loadBalancerSourceRanges: []
+  type: ClusterIP
+  port: 8000
+  nodePort: ""
+  elbSecurityGroup: "sg-0f69a820c9ed808ba"
+
+podAnnotations: {}
+
+resources: {}
+
+nodeSelector: {}
